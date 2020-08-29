@@ -1,11 +1,11 @@
 import React from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 
-const Settings = ({ navigation }) => {
+const Favourites = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Text style={{ fontSize: 22, fontWeight: "bold" }}>
-        This is Settings Page
+        This is Favourites Page
       </Text>
       <TouchableOpacity
         onPress={() => navigation.goBack()}
@@ -37,4 +37,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Settings;
+export default Favourites;

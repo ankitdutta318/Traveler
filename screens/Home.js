@@ -67,7 +67,7 @@ const Home = ({ navigation }) => {
       <View>
         <ImageBackground
           source={image}
-          style={{ width: "100%", height: 270 }}
+          style={{ width: "100%", height: 270, elevation: 100 }}
           imageStyle={{ borderBottomRightRadius: 65 }}
         >
           <View style={styles.dakOverlay}></View>
@@ -90,8 +90,15 @@ const Home = ({ navigation }) => {
               style={styles.searchIcon}
             />
           </View>
-          <Feather name="menu" size={22} color="#fff" style={styles.menuIcon} />
           <Feather
+            onPress={() => navigation.toggleDrawer()}
+            name="menu"
+            size={22}
+            color="#fff"
+            style={styles.menuIcon}
+          />
+          <Feather
+            onPress={() => navigation.navigate("Notifications")}
             name="bell"
             size={22}
             color="#fff"
@@ -102,7 +109,7 @@ const Home = ({ navigation }) => {
 
       <ScrollView>
         {/* Top Trending section */}
-        <View style={{ padding: 20 }}>
+        <View style={{ paddingLeft: 20, paddingTop: 20 }}>
           <Text style={styles.subHeader}>Top Trending</Text>
         </View>
         <View>
