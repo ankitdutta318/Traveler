@@ -1,24 +1,19 @@
-import React, { useState } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  Switch,
-  TouchableWithoutFeedback,
-} from "react-native";
+import React from "react";
+import { View, Text, StyleSheet, Image, Switch } from "react-native";
 import { DrawerContentScrollView, DrawerItem } from "@react-navigation/drawer";
 import { Feather } from "@expo/vector-icons";
+import { useSelector, useDispatch } from "react-redux";
+
+// import actions
+import { TOGGLE_THEME } from "../constants/themeConstants";
 
 const avatar = {
   uri: "https://api.adorable.io/avatars/60/abott@adorable.png",
 };
 
 const DrawerComponent = (props) => {
-  const [isDarkTheme, setIsDarkTheme] = useState(false);
-
-  // toggle theme function
-  const toggleTheme = () => setIsDarkTheme(!isDarkTheme);
+  const theme = useSelector((state) => state.theme);
+  const dispatch = useDispatch();
 
   return (
     <View style={styles.drawerContent}>
@@ -105,18 +100,23 @@ const DrawerComponent = (props) => {
             <Text style={{ fontSize: 16, fontWeight: "bold", color: "#666" }}>
               Preferences
             </Text>
-            <TouchableWithoutFeedback onPress={toggleTheme}>
+            <View>
               <View style={styles.preference}>
                 <Text style={{ fontSize: 16, color: "#666" }}>Dark Theme</Text>
                 <Switch
-                  onValueChange={toggleTheme}
-                  value={isDarkTheme}
+                  onValueChange={() =>
+                    dispatch({
+                      type: TOGGLE_THEME,
+                      payload: theme === "light" ? "dark" : "light",
+                    })
+                  }
+                  value={theme === "dark"}
                   trackColor={{ true: "#f4f3f4" }}
                   thumbColor={"#ffa32f"}
                   style
                 />
               </View>
-            </TouchableWithoutFeedback>
+            </View>
           </View>
         </View>
       </DrawerContentScrollView>

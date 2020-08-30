@@ -1,9 +1,15 @@
-import { StyleSheet, View } from "react-native";
+import React from "react";
+import { StyleSheet } from "react-native";
+import { Provider, useSelector } from "react-redux";
+import { store } from "./store";
 
 // Navigation setup
 import "react-native-gesture-handler";
-import * as React from "react";
-import { NavigationContainer } from "@react-navigation/native";
+import {
+  NavigationContainer,
+  DefaultTheme,
+  DarkTheme,
+} from "@react-navigation/native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 
 // import screens
@@ -16,9 +22,10 @@ import Support from "./screens/Support";
 
 const Drawer = createDrawerNavigator();
 
-export default function App() {
+const Navigation = () => {
+  const theme = useSelector((state) => state.theme);
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={theme === "light" ? DefaultTheme : DarkTheme}>
       <Drawer.Navigator
         initialRouteName="Home"
         edgeWidth={80}
@@ -38,7 +45,15 @@ export default function App() {
       </Drawer.Navigator>
     </NavigationContainer>
   );
-}
+};
+
+const App = () => {
+  return (
+    <Provider store={store}>
+      <Navigation />
+    </Provider>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -48,3 +63,5 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 });
+
+export default App;
