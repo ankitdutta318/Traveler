@@ -20,11 +20,13 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.traveller.traveller",
-      "buildNumber": "1.0.0"
+      "buildNumber": "1.0.0",
+      "userInterfaceStyle": "automatic"
     },
     "android": {
       "package": "com.yourcompany.yourappname",
-      "versionCode": 1
+      "versionCode": 1,
+      "userInterfaceStyle": "automatic"
     },
     "web": {
       "favicon": "./assets/favicon.png"

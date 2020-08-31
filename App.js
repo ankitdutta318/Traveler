@@ -1,7 +1,10 @@
-import React from "react";
-import { StyleSheet } from "react-native";
-import { Provider, useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { Provider, useSelector, useDispatch } from "react-redux";
+import { useColorScheme } from "react-native-appearance";
 import { store } from "./store";
+
+// import actions
+import { TOGGLE_THEME } from "./constants/themeConstants";
 
 // Navigation setup
 import "react-native-gesture-handler";
@@ -23,7 +26,19 @@ import Support from "./screens/Support";
 const Drawer = createDrawerNavigator();
 
 const Navigation = () => {
+  let colorScheme = useColorScheme();
   const theme = useSelector((state) => state.theme);
+  const dispatch = useDispatch();
+
+  // load OS theme preference
+  useEffect(() => {
+    // console.log(colorScheme);
+    dispatch({
+      type: TOGGLE_THEME,
+      payload: colorScheme,
+    });
+  }, [colorScheme]);
+
   return (
     <NavigationContainer theme={theme === "light" ? DefaultTheme : DarkTheme}>
       <Drawer.Navigator
@@ -31,7 +46,7 @@ const Navigation = () => {
         edgeWidth={80}
         drawerStyle={{
           elevation: 150,
-          width: 300,
+          width: "80%",
           borderTopRightRadius: 10,
           borderBottomRightRadius: 10,
         }}
@@ -54,14 +69,5 @@ const App = () => {
     </Provider>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
 
 export default App;

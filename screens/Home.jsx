@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   FlatList,
   TextInput,
+  StatusBar,
 } from "react-native";
 import { useTheme } from "@react-navigation/native";
 import { Feather } from "@expo/vector-icons";
@@ -100,7 +101,9 @@ const Home = ({ navigation }) => {
             style={styles.menuIcon}
           />
           <Feather
-            onPress={() => navigation.navigate("Notifications")}
+            onPress={() =>
+              navigation.navigate("Notifications", { name: "Nofifications" })
+            }
             name="bell"
             size={22}
             color="#fff"
@@ -264,12 +267,12 @@ const styles = StyleSheet.create({
   },
   menuIcon: {
     position: "absolute",
-    top: 40,
+    top: 35,
     left: 16,
   },
   notificationIcon: {
     position: "absolute",
-    top: 30,
+    top: 35,
     right: 16,
   },
   subHeader: { fontSize: 22, fontWeight: "bold" },

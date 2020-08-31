@@ -155,7 +155,6 @@ const DrawerComponent = (props) => {
                     true: "#f4f3f4",
                   }}
                   thumbColor={colors.primary}
-                  style
                 />
               </View>
             </View>
