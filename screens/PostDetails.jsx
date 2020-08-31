@@ -9,7 +9,9 @@ import {
   TouchableOpacity,
   FlatList,
 } from "react-native";
+import { useTheme } from "@react-navigation/native";
 import { Feather } from "@expo/vector-icons";
+import { color } from "react-native-reanimated";
 
 const image = {
   uri:
@@ -17,6 +19,7 @@ const image = {
 };
 
 const PostDetails = ({ navigation }) => {
+  const { colors } = useTheme();
   const [gallery, setgallery] = useState([
     {
       image: {
@@ -57,7 +60,7 @@ const PostDetails = ({ navigation }) => {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={{ ...styles.container, backgroundColor: colors.card }}>
       <ImageBackground
         source={image}
         style={styles.image}
@@ -68,22 +71,31 @@ const PostDetails = ({ navigation }) => {
           Explore the scenic beauty of Switzerland
         </Text>
 
-        <TouchableOpacity onPress={goBack} style={styles.backIcon}>
+        <TouchableOpacity
+          onPress={goBack}
+          style={{ ...styles.backIcon, backgroundColor: colors.primary }}
+        >
           <Feather name="arrow-left" size={24} color="#fff" />
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.favouriteIcon}>
+        <TouchableOpacity
+          style={{ ...styles.favouriteIcon, backgroundColor: colors.primary }}
+        >
           <Feather name="heart" size={22} color="#fff" />
         </TouchableOpacity>
       </ImageBackground>
 
-      <TouchableOpacity style={styles.bookTicketBtn}>
+      <TouchableOpacity
+        style={{ ...styles.bookTicketBtn, backgroundColor: colors.primary }}
+      >
         <Text style={styles.bookTicketText}>Book Now</Text>
       </TouchableOpacity>
 
-      <ScrollView>
-        <Text style={styles.header}>About the place</Text>
-        <Text style={styles.description}>
+      <ScrollView style={{ backgroundColor: colors.card }}>
+        <Text style={{ ...styles.header, color: colors.text }}>
+          About the place
+        </Text>
+        <Text style={{ ...styles.description, color: colors.text }}>
           Switzerland is a mountainous Central European country, home to
           numerous lakes, villages and the high peaks of the Alps. Its cities
           contain medieval quarters, with landmarks like capital Bern’s
@@ -92,7 +104,7 @@ const PostDetails = ({ navigation }) => {
           finance are key industries, and Swiss watches and chocolate are world
           renowned.
         </Text>
-        <Text style={styles.description}>
+        <Text style={{ ...styles.description, color: colors.text }}>
           Switzerland is a mountainous Central European country, home to
           numerous lakes, villages and the high peaks of the Alps. Its cities
           contain medieval quarters, with landmarks like capital Bern’s
@@ -101,7 +113,7 @@ const PostDetails = ({ navigation }) => {
           finance are key industries, and Swiss watches and chocolate are world
           renowned.
         </Text>
-        <Text style={styles.description}>
+        <Text style={{ ...styles.description, color: colors.text }}>
           Switzerland is a mountainous Central European country, home to
           numerous lakes, villages and the high peaks of the Alps. Its cities
           contain medieval quarters, with landmarks like capital Bern’s
@@ -151,7 +163,6 @@ const PostDetails = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
   },
   image: {
     height: 380,
@@ -175,7 +186,6 @@ const styles = StyleSheet.create({
     position: "absolute",
     left: 20,
     top: 40,
-    backgroundColor: "#ff6200",
     padding: 10,
     borderRadius: 40,
   },
@@ -183,7 +193,6 @@ const styles = StyleSheet.create({
     position: "absolute",
     right: 20,
     top: 40,
-    backgroundColor: "#ff6200",
     padding: 10,
     borderRadius: 40,
   },
@@ -191,7 +200,6 @@ const styles = StyleSheet.create({
     position: "absolute",
     right: 12,
     top: 350,
-    backgroundColor: "#ff6200",
     padding: 16,
     borderRadius: 40,
     elevation: 5,
@@ -207,7 +215,7 @@ const styles = StyleSheet.create({
   },
   description: {
     paddingHorizontal: 14,
-    fontSize: 14,
+    fontSize: 16,
     fontWeight: "normal",
     opacity: 0.3,
     justifyContent: "flex-start",

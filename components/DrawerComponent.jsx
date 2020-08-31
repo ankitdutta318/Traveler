@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet, Image, Switch } from "react-native";
+import { useTheme } from "@react-navigation/native";
 import { DrawerContentScrollView, DrawerItem } from "@react-navigation/drawer";
 import { Feather } from "@expo/vector-icons";
 import { useSelector, useDispatch } from "react-redux";
@@ -12,6 +13,7 @@ const avatar = {
 };
 
 const DrawerComponent = (props) => {
+  const { colors } = useTheme();
   const theme = useSelector((state) => state.theme);
   const dispatch = useDispatch();
 
@@ -22,8 +24,19 @@ const DrawerComponent = (props) => {
           {/* User info section */}
           <View style={styles.userInfoSection}>
             {/* Avatar and Username section */}
-            <View style={{ flexDirection: "row", marginTop: 15 }}>
-              <Image source={avatar} style={styles.avatar} />
+            <View
+              style={{
+                flexDirection: "row",
+                marginTop: 15,
+              }}
+            >
+              <Image
+                source={avatar}
+                style={{
+                  ...styles.avatar,
+                  borderColor: colors.primary,
+                }}
+              />
               <View
                 style={{
                   flexDirection: "column",
@@ -31,64 +44,78 @@ const DrawerComponent = (props) => {
                   marginTop: 5,
                 }}
               >
-                <Text style={styles.title}>Ankit Dutta</Text>
-                <Text style={styles.secondaryText}>@ankitdutta318</Text>
+                <Text
+                  style={{
+                    ...styles.title,
+                    color: colors.text,
+                  }}
+                >
+                  Ankit Dutta
+                </Text>
+                <Text style={styles.secondaryText}> @ankitdutta318 </Text>
               </View>
             </View>
-
             {/* Followers, Following and Favourites section */}
             <View style={styles.row}>
               <View style={styles.section}>
                 <Text style={[styles.secondaryText, styles.paragraph]}>
                   125
                 </Text>
-                <Text style={styles.secondaryText}>Followers</Text>
+                <Text style={styles.secondaryText}> Followers </Text>
               </View>
               <View style={styles.section}>
                 <Text style={[styles.secondaryText, styles.paragraph]}>77</Text>
-                <Text style={styles.secondaryText}>Following</Text>
+                <Text style={styles.secondaryText}> Following </Text>
               </View>
               <View style={styles.section}>
                 <Text style={[styles.secondaryText, styles.paragraph]}>43</Text>
-                <Text style={styles.secondaryText}>Favourites</Text>
+                <Text style={styles.secondaryText}> Favourites </Text>
               </View>
             </View>
           </View>
-
           {/* Drawer navigation section */}
           <View style={styles.drawerSection}>
             <DrawerItem
               label="Home"
-              labelStyle={{ fontSize: 16 }}
+              labelStyle={{
+                fontSize: 16,
+              }}
               icon={() => <Feather name="home" size={16} color="#666" />}
               onPress={() => props.navigation.navigate("Home")}
             />
             <DrawerItem
               label="Profile"
-              labelStyle={{ fontSize: 16 }}
+              labelStyle={{
+                fontSize: 16,
+              }}
               icon={() => <Feather name="user" size={16} color="#666" />}
               onPress={() => props.navigation.navigate("Profile")}
             />
             <DrawerItem
               label="Favourites"
-              labelStyle={{ fontSize: 16 }}
+              labelStyle={{
+                fontSize: 16,
+              }}
               icon={() => <Feather name="heart" size={16} color="#666" />}
               onPress={() => props.navigation.navigate("Favourites")}
             />
             <DrawerItem
               label="Settings"
-              labelStyle={{ fontSize: 16 }}
+              labelStyle={{
+                fontSize: 16,
+              }}
               icon={() => <Feather name="settings" size={16} color="#666" />}
               onPress={() => props.navigation.navigate("Settings")}
             />
             <DrawerItem
               label="Support"
-              labelStyle={{ fontSize: 16 }}
+              labelStyle={{
+                fontSize: 16,
+              }}
               icon={() => <Feather name="help-circle" size={16} color="#666" />}
               onPress={() => props.navigation.navigate("Support")}
             />
           </View>
-
           {/* Preferences section */}
           <View
             style={{
@@ -97,12 +124,25 @@ const DrawerComponent = (props) => {
               borderBottomWidth: 1,
             }}
           >
-            <Text style={{ fontSize: 16, fontWeight: "bold", color: "#666" }}>
+            <Text
+              style={{
+                fontSize: 16,
+                fontWeight: "bold",
+                color: "#666",
+              }}
+            >
               Preferences
             </Text>
             <View>
               <View style={styles.preference}>
-                <Text style={{ fontSize: 16, color: "#666" }}>Dark Theme</Text>
+                <Text
+                  style={{
+                    fontSize: 16,
+                    color: "#666",
+                  }}
+                >
+                  Dark Theme
+                </Text>
                 <Switch
                   onValueChange={() =>
                     dispatch({
@@ -111,8 +151,10 @@ const DrawerComponent = (props) => {
                     })
                   }
                   value={theme === "dark"}
-                  trackColor={{ true: "#f4f3f4" }}
-                  thumbColor={"#ffa32f"}
+                  trackColor={{
+                    true: "#f4f3f4",
+                  }}
+                  thumbColor={colors.primary}
                   style
                 />
               </View>
@@ -123,7 +165,9 @@ const DrawerComponent = (props) => {
       <View style={styles.bottomDrawerSection}>
         <DrawerItem
           label="Sign Out"
-          labelStyle={{ fontSize: 16 }}
+          labelStyle={{
+            fontSize: 16,
+          }}
           icon={() => <Feather name="log-out" size={16} color="#666" />}
         />
       </View>
@@ -145,7 +189,6 @@ const styles = StyleSheet.create({
     height: 60,
     width: 60,
     borderRadius: 50,
-    borderColor: "#ff6200",
     borderWidth: 1,
   },
   title: {

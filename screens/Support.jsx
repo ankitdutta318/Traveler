@@ -1,11 +1,14 @@
 import React from "react";
+import { useTheme } from "@react-navigation/native";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 
-const Settings = ({ navigation }) => {
+const Support = ({ navigation }) => {
+  const { colors } = useTheme();
+
   return (
-    <View style={styles.container}>
-      <Text style={{ fontSize: 22, fontWeight: "bold" }}>
-        This is Settings Page
+    <View style={{ ...styles.container, backgroundColor: colors.background }}>
+      <Text style={{ color: colors.text, fontSize: 22, fontWeight: "bold" }}>
+        This is Support Page
       </Text>
       <TouchableOpacity
         onPress={() => navigation.goBack()}
@@ -20,7 +23,6 @@ const Settings = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
   },
@@ -37,4 +39,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Settings;
+export default Support;

@@ -10,6 +10,7 @@ import {
   FlatList,
   TextInput,
 } from "react-native";
+import { useTheme } from "@react-navigation/native";
 import { Feather } from "@expo/vector-icons";
 
 const image = {
@@ -23,6 +24,7 @@ const recentImage = {
 };
 
 const Home = ({ navigation }) => {
+  const { colors, dark } = useTheme();
   const [gallery, setgallery] = useState([
     {
       image: {
@@ -110,7 +112,9 @@ const Home = ({ navigation }) => {
       <ScrollView>
         {/* Top Trending section */}
         <View style={{ paddingLeft: 20, paddingTop: 20 }}>
-          <Text style={styles.subHeader}>Top Trending</Text>
+          <Text style={{ ...styles.subHeader, color: colors.text }}>
+            Top Trending
+          </Text>
         </View>
         <View>
           <FlatList
@@ -119,7 +123,10 @@ const Home = ({ navigation }) => {
             renderItem={({ item }) => {
               return (
                 <View style={{ paddingVertical: 20, paddingLeft: 16 }}>
-                  <TouchableOpacity onPress={goToPost}>
+                  <TouchableOpacity
+                    style={{ elevation: 50 }}
+                    onPress={goToPost}
+                  >
                     <Image
                       source={item.image}
                       style={{
@@ -127,6 +134,8 @@ const Home = ({ navigation }) => {
                         marginRight: 8,
                         height: 250,
                         borderRadius: 10,
+                        borderWidth: dark ? 1 : 0,
+                        borderColor: colors.primary,
                       }}
                     />
                     <View style={styles.imageOverlay}></View>
@@ -153,8 +162,12 @@ const Home = ({ navigation }) => {
               justifyContent: "space-between",
             }}
           >
-            <Text style={styles.subHeader}>Recently Viewed</Text>
-            <Text style={styles.subHeaderExtra}>View All</Text>
+            <Text style={{ ...styles.subHeader, color: colors.text }}>
+              Recently Viewed
+            </Text>
+            <Text style={{ ...styles.subHeaderExtra, color: colors.primary }}>
+              View All
+            </Text>
           </View>
           <Image
             source={recentImage}
@@ -260,7 +273,7 @@ const styles = StyleSheet.create({
     right: 16,
   },
   subHeader: { fontSize: 22, fontWeight: "bold" },
-  subHeaderExtra: { fontSize: 14, fontWeight: "bold", color: "#ff6200" },
+  subHeaderExtra: { fontSize: 14, fontWeight: "bold" },
   imageOverlay: {
     height: 250,
     width: 150,

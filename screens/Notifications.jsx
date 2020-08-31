@@ -1,10 +1,24 @@
 import React from "react";
+import { useTheme } from "@react-navigation/native";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 
 const Notifications = ({ navigation }) => {
+  const { colors } = useTheme();
+
   return (
-    <View style={styles.container}>
-      <Text style={{ fontSize: 22, fontWeight: "bold" }}>
+    <View
+      style={{
+        ...styles.container,
+        backgroundColor: colors.background,
+      }}
+    >
+      <Text
+        style={{
+          color: colors.text,
+          fontSize: 22,
+          fontWeight: "bold",
+        }}
+      >
         This is Notifications Page
       </Text>
       <TouchableOpacity
@@ -20,7 +34,6 @@ const Notifications = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
   },
