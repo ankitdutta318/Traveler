@@ -16,9 +16,9 @@ import {
 import { createDrawerNavigator } from "@react-navigation/drawer";
 
 // import screens
-import StackNavigator from "./components/StackNavigator";
+import HomeStackNavigator from "./components/HomeStackNavigator";
+import ProfileStackNavigator from "./components/ProfleStackNavigator";
 import DrawerComponent from "./components/DrawerComponent";
-import Profile from "./screens/Profile";
 import Favourites from "./screens/Favourites";
 import Settings from "./screens/Settings";
 import Support from "./screens/Support";
@@ -45,15 +45,14 @@ const Navigation = () => {
         initialRouteName="Home"
         edgeWidth={80}
         drawerStyle={{
-          elevation: 150,
           width: "80%",
           borderTopRightRadius: 10,
           borderBottomRightRadius: 10,
         }}
         drawerContent={(props) => <DrawerComponent {...props} />}
       >
-        <Drawer.Screen name="Home" component={StackNavigator} />
-        <Drawer.Screen name="Profile" component={Profile} />
+        <Drawer.Screen name="HomeStack" component={HomeStackNavigator} />
+        <Drawer.Screen name="ProfileStack" component={ProfileStackNavigator} />
         <Drawer.Screen name="Favourites" component={Favourites} />
         <Drawer.Screen name="Settings" component={Settings} />
         <Drawer.Screen name="Support" component={Support} />

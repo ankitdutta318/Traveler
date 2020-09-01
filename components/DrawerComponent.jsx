@@ -81,7 +81,7 @@ const DrawerComponent = (props) => {
                 fontSize: 16,
               }}
               icon={() => <Feather name="home" size={16} color="#666" />}
-              onPress={() => props.navigation.navigate("Home")}
+              onPress={() => props.navigation.navigate("HomeStack")}
             />
             <DrawerItem
               label="Profile"
@@ -89,7 +89,11 @@ const DrawerComponent = (props) => {
                 fontSize: 16,
               }}
               icon={() => <Feather name="user" size={16} color="#666" />}
-              onPress={() => props.navigation.navigate("Profile")}
+              onPress={() =>
+                props.navigation.navigate("ProfileStack", {
+                  name: "ankitdutta318",
+                })
+              }
             />
             <DrawerItem
               label="Favourites"

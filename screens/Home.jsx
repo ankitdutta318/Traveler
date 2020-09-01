@@ -101,9 +101,7 @@ const Home = ({ navigation }) => {
             style={styles.menuIcon}
           />
           <Feather
-            onPress={() =>
-              navigation.navigate("Notifications", { name: "Nofifications" })
-            }
+            onPress={() => navigation.navigate("Notifications")}
             name="bell"
             size={22}
             color="#fff"
